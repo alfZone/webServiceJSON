@@ -46,7 +46,7 @@ exports.create = async (req, res) => {
 //atualiza o carro
 exports.update = async (req, res) => {
     //obter o carro pelas características enviadas
-    const {id, Marca, Detalhe, Foto} = req.body;
+    const {id, Marca, Detalhes, Foto} = req.body;
      //ler o ficheiro local
      const datajson = fs.readFileSync("data/local/data.json", "utf-8");
      //parse do json
@@ -55,12 +55,12 @@ exports.update = async (req, res) => {
     const carros = data.carros.find(carro => carro.id == id);
     //atualizar as caraterísticas
     carros.Marca = Marca;
-    carros.Detalhe = Detalhe;
+    carros.Detalhes = Detalhes;
     carros.Foto = Foto;
     //actualizar no ficheiro json
     fs.writeFileSync('data/local/data.json', JSON.stringify(data));
     //devolver o carro alterado
-    return res.send({id, Marca, Detalhe, Foto});
+    return res.send({id, Marca, Detalhes, Foto});
 }
 
 
